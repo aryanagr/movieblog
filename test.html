@@ -1,8 +1,19 @@
-<div include-html="header.html" id="header_file"></div>
-
-<h2>I m Main</h2>
-
-<div include-html="footer.html" id="footer_file"></div>
-
-<script src="js/jquery-3.6.0.min.js"></script>
-<script src="js/include-html.min.js"></script>
+<!DOCTYPE html>  
+<html>  
+<head>  
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>  
+<script>  
+$(document).ready(function(){  
+    $("input").keydown(function(){  
+        $("input").css("background-color", "red");  
+    });  
+    $("input").keyup(function(){  
+        $("input").css("background-color", "yellow");  
+    });  
+});  
+</script>  
+</head>  
+<body>  
+Write something: <input type="text">  
+</body>  
+</html>   
