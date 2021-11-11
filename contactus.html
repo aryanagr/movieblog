@@ -3,22 +3,29 @@
       <div class="row ">
       <h5 class="card-title col-lg-10 offset-lg-1 my-5">Talk to us...</h5>
         <div class=" col-lg-10 offset-lg-1">
-        <form id="contact" method="POST">
+        <form  onsubmit="event.preventDefault();" >
            <div class=" bg-white d-flex justify-content-between align-items-between">
-         <input class=" w-25 bg-light" type="text" placeholder="name" id="contactname"   name="name"  style="border:0; outline:0"/>
-         <input class=" w-25 bg-light" type="email" placeholder="email" id="conatctemail"   name="email"  style="border:0;outline:0"/>
-         <input class=" w-25 bg-light" type="text" placeholder="phone number" id="contactnumber"   name="mobilenumber"   style="border:0;outline:0"/>
+         <span class="w-25"><input class=" w-100 bg-light" type="text" placeholder="name" id="messagename"   name="name"  style="border:0; outline:0"/>
+        <span style="color: red; font-size:small;" id="checkmessagename"></span>
+        </span>
+         <span class="w-25"><input class=" w-100 bg-light" type="email" placeholder="email" id="messageemail"   name="email"  style="border:0;outline:0"/>
+        <span style="color: red; font-size:small;" id="checkmessageemail"></span>
+        </span>
+         <span class="w-25"><input class=" w-100 bg-light" type="text" placeholder="phone number" id="messagepnumber"   name="mobilenumber"   style="border:0;outline:0"/>
+        <span style="color: red; font-size:small;" id="checkmessagepnumber"></span>
+        </span>
            </div>
-           <div class=" w-100">
-             <input class="w-100   bg-light my-4 mb-3" id="" cols="30" rows="10" placeholder="subject"  name="subject" style="border:0;outline:0" ></input>
+           <div class=" w-100 mb-4">
+             <input class="w-100   bg-light my-4 mb-0" id="messagesubject" cols="30" rows="10" placeholder="subject"  name="subject" style="border:0;outline:0" ></input>
+             <span style="color: red; font-size:small;" id="checkmessagesubject"></span>
            </div>
  
-           <div class=" w-100">
-             <textarea class="w-100  bg-light my-3 mb-3" id="" cols="30" rows="10" placeholder="messgae..."  name="message" style="border:0;outline:0" ></textarea>
- 
+           <div class=" w-100 mb-3">
+             <textarea class="w-100  bg-light mt-3 mb-0 " id="messagemessage" cols="30" rows="10" placeholder="messgae..."  name="message" style="border:0;outline:0" ></textarea>
+             <span style="color: red; font-size:small;" id="checkmessagemessage"></span>
  
            </div>
-           <button class="btn btn-light btn-outline-secondary mb-5" type="submit" onClick={contactform}> submit</button>
+           <button class="btn btn-light btn-outline-secondary mb-5" onclick="messagesend(event)" > submit</button>
            </form>
         </div>
       </div>

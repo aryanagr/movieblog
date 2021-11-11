@@ -21,7 +21,7 @@ const signup =(event)=>{
     if(gender.length==0){$("#gendercheck").text("gender should be entered")
     check=false
 }
-    if(pnumber.length!=10){$("#pnumbercheck").text("mobile number should be entered")
+    if(pnumber.length!=10){$("#pnumbercheck").text("mobile number should length 10")
     check=false
 }
     if(dob.length=!10){$("#dobcheck").text("date of birth should be entered")
@@ -71,6 +71,36 @@ if(check){
 const logout=()=>{
     navbarcheck=false;
     signinpage();
+}
+const messagesend=(event)=>{
+    event.preventDefault()
+    let email=$("#messageemail").val()
+    let name=$("#messagename").val()
+    
+    let pnumber=$("#messagepnumber").val()
+    
+    let subject=$("#messagesubject").val()
+    let message=$("#messagemessage").val()
+    let check=true
+    if(email.length==0){$("#checkmessageemail").text("email should be valid")
+    check=false
+}
+    if(name.length==0){$("#checkmessagename").text("name  should be entered")
+    check=false
+}
+   if(pnumber.length!=10){$("#checkmessagepnumber").text("mobile number length 10")
+    check=false
+}
+   if(message.length==0){$("#checkmessagemessage").text("message should be add")
+    check=false
+}
+   if(subject.length==0){$("#checkmessagesubject").text("subject should be add")
+    check=false
+}
+    if(check){
+    alert("message send")
+    contactuspage();
+    }
 }
  
 
