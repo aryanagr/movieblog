@@ -81,23 +81,23 @@ const messagesend=(event)=>{
     
     let subject=$("#messagesubject").val()
     let message=$("#messagemessage").val()
-    let check=true
+    let messagecheck=true
     if(email.length==0){$("#checkmessageemail").text("email should be valid")
-    check=false
+    messagecheck=false
 }
     if(name.length==0){$("#checkmessagename").text("name  should be entered")
-    check=false
+    messagecheck=false
 }
    if(pnumber.length!=10){$("#checkmessagepnumber").text("mobile number length 10")
-    check=false
+    messagecheck=false
 }
    if(message.length==0){$("#checkmessagemessage").text("message should be add")
-    check=false
+    messagecheck=false
 }
    if(subject.length==0){$("#checkmessagesubject").text("subject should be add")
-    check=false
+    messagecheck=false
 }
-    if(check){
+    if(messagecheck){
     alert("message send")
     contactuspage();
     }
