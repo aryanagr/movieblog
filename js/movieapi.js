@@ -7,14 +7,19 @@ const apipopularmovie=baseurl+'/discover/movie?sort_by=popularity.desc&'+api_key
 const imageurl='https://image.tmdb.org/t/p/w500/';
 const searchurl=baseurl+'/search/movie?'+api_key;
 const changepageurl=baseurl+'/discover/movie?sort_by=popularity.desc&'+api_key+'&page='
+
 const body=document.getElementById("body");
-const searchdata=document.getElementById("searchbar");
+
 var pagenumber=1;
+var totalpage=1;
+var searchpagenumber=1;
+var globalpage=1;
+
 function getmovie(url){
     fetch(url)
     .then(res=>res.json())
     .then(data =>{
-      
+      totalpage=data.total_pages;
        
        showmovies(data.results);
     })
@@ -65,10 +70,12 @@ body.appendChild(cardparent)
     const page=document.createElement('div');
     page.innerHTML=`<div class="d-flex justify-content-center">
     <button type="button" class="btn btn-light p-2 m-2" onclick="previouspage()"> previous page</button>
+    <label class=" bg-light p-2 m-2  " type="number"  id="pageshow"   style="border:0; outline:0; height:40px;width:50px" /></label>
     <button type="button" class="btn btn-light p-2 m-2" onclick="nextpage()">next page</button>
 </div>`;
-    
+
     document.getElementById("cardadd").appendChild(page);
+    document.getElementById("pageshow").innerText=globalpage;
 }
  
 }
@@ -90,29 +97,71 @@ const searchenter=(event)=> {
     }
   }
   const nextpage =()=>{
+    if(searchbar.value==""){
     
-    
-      if(pagenumber+1<=1000){
-        pagenumber=pagenumber+1
+      if(pagenumber+1<=totalpage){
+        
+        pagenumber=pagenumber+1;
+        globalpage=pagenumber;
       getmovie(changepageurl+pagenumber)
+      document.getElementById("pageshow").innerText=pagenumber;
       document.body.scrollTop = 0; 
       document.documentElement.scrollTop = 0;
+      searchpagenumber=1
+      
+      
     }
     else{
         alert("no more page")
     }
+}
+    else{
+        if(searchpagenumber+1<=totalpage){
+            searchpagenumber=searchpagenumber+1
+            globalpage=searchpagenumber;
+          getmovie(searchurl+'&query='+searchbar.value+'&page='+searchpagenumber)
+          document.body.scrollTop = 0; 
+          document.documentElement.scrollTop = 0;
+          pagenumber=1;
+          
+        }
+        else{
+            alert("no more page")
+        }
+
+    }
   }
   const previouspage=()=>{
-    console.log("hello")
+    if(searchbar.value==""){
     
-    if(pagenumber-1>=1){
-        pagenumber=pagenumber-1
+    if(pagenumber-1>0){
+        pagenumber=pagenumber-1;
+        globalpage=pagenumber;
     getmovie(changepageurl+pagenumber)
     document.body.scrollTop = 0; 
     document.documentElement.scrollTop = 0;
+    searchpagenumber=1
+    
     }
     else{  alert("no more previous page");
 }
+  }
+  else{
+    if(searchpagenumber-1>0){
+        
+        searchpagenumber=searchpagenumber-1
+        globalpage=searchpagenumber;
+      getmovie(searchurl+'&query='+searchbar.value+'&page='+searchpagenumber)
+      document.body.scrollTop = 0; 
+      document.documentElement.scrollTop = 0;
+      pagenumber=1;
+      
+    }
+    else{
+        alert("no more previous page")
+    }
+
+  }
 }
 
 
