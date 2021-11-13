@@ -1,4 +1,6 @@
 
+$(document).ready(function(){
+    
 
 
 const signup =(event)=>{
@@ -102,6 +104,9 @@ const messagesend=(event)=>{
     contactuspage();
     }
 }
+
  
+})
+
 
 

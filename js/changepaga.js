@@ -8,7 +8,7 @@ const update=()=>{
 jQuery.ajax({
     url: t,
     success: function (t) {
-        $("#" + u).html(t);checknavbar()
+        $("#" + u).html(t);checknavbar(); 
 
     },
     error: function (n, c, i) {
@@ -25,7 +25,9 @@ jQuery.ajax({
 const homepage=()=>{
  
     $("#body").attr("include-html","movieblogs.html");
+   
    update();
+   
 }
 const signinpage=()=>{
  

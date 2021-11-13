@@ -2,18 +2,52 @@
 <html>  
 <head>  
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>  
+
 <script>  
-$(document).ready(function(){  
-    $("input").keydown(function(){  
-        $("input").css("background-color", "red");  
-    });  
-    $("input").keyup(function(){  
-        $("input").css("background-color", "yellow");  
-    });  
-});  
+const api_key='api_key=c78e40c8f8548955baa2f20d92ec9fcf';
+const baseurl='https://api.themoviedb.org/3'
+const apipopularmovie=baseurl+'/discover/movie?sort_by=popularity.desc&'+api_key;
+const imageurl='https://image.tmdb.org/t/p/w500/';
+const cardadd=document.getElementById('card');
+
+function getmovie(url){
+    fetch(url)
+    .then(res=>res.json())
+    .then(data =>{
+       console.log(data.results)
+        showmovies(data.results);
+    })
+}
+
+
+
+function showmovies(data){
+    cardadd.innerHTML="";
+    console.log(hello)
+    data.forEach(movie => {
+        console.log(movie)
+        const {title,poster_path,vote_average,overview}=movie;
+        const moviecard=document.createElement('div');
+        moviecard.classList.add('card  col-sm-6 col-lg-4 col-xl-3 p-3 mt-5 pt-0');
+        moviecard.setAttribute("style", "display: inline-block; outline: 0; border: 0;");
+        moviecard.innerHTML=`
+        <img src="${imageurl+poster_path}" alt="${title}"   class="card-img-top  w-100 h-75" alt="...">
+        <div class="card-body ">
+        <div class="row">
+            <h5 class="card-title col-8 d-inline">${title}</h5>  <h5 class="card-text col-4 d-inline" id="ratting">${vote_average}</h5>
+        </div>
+        <p class="card-text">${overview}</p>
+        <a href="https://www.netflix.com/in/title/70131314?source=35" class="btn btn-primary">watch movie</a>
+        </div>
+        `;
+        cardadd.appendChild(moviecard);
+        
+    });
+    getmovie(apipopularmovie);
+}
 </script>  
 </head>  
 <body>  
-Write something: <input type="text">  
+<div id="card">hello </div>
 </body>  
 </html>   
