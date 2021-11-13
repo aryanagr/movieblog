@@ -81,10 +81,14 @@ body.appendChild(cardparent)
 }
 const search=()=>{
     const data=searchbar.value;
+    globalpage=1;
     if(data!=""){
+       
         getmovie(searchurl+'&query='+data);
+       
     }
     else getmovie(apipopularmovie);
+    
 }
 
 const searchenter=(event)=> {
