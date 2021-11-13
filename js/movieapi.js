@@ -5,13 +5,16 @@ const api_key='api_key=c78e40c8f8548955baa2f20d92ec9fcf';
 const baseurl='https://api.themoviedb.org/3'
 const apipopularmovie=baseurl+'/discover/movie?sort_by=popularity.desc&'+api_key;
 const imageurl='https://image.tmdb.org/t/p/w500/';
+const searchurl=baseurl+'/search/movie?'+api_key;
+const changepageurl=baseurl+'/discover/movie?sort_by=popularity.desc&'+api_key+'&page='
 const body=document.getElementById("body");
-
+const searchdata=document.getElementById("searchbar");
+var pagenumber=1;
 function getmovie(url){
     fetch(url)
     .then(res=>res.json())
     .then(data =>{
-       console.log("hello") ;
+      
        
        showmovies(data.results);
     })
@@ -20,7 +23,7 @@ function getmovie(url){
 
 
 function showmovies(data){
-    
+    body.innerHTML="";
     const cardparent=document.createElement('div');
     cardparent.classList.add("container-fluid" , "px-4" ,"px-md-5","px-lg-5" ,"px-xl-5","py-0" ,"bg-white","my-0" );
     cardparent.setAttribute("style", " outline: 0; border: 0;");
@@ -37,7 +40,8 @@ function showmovies(data){
 
 
 body.appendChild(cardparent)
-   
+   if(data.length==0){alert("no movie found");getmovie(apipopularmovie);}
+   else{
     data.forEach(movie => {
         
         const {title,poster_path,vote_average,overview}=movie;
@@ -55,11 +59,61 @@ body.appendChild(cardparent)
         </div>
         `;
          document.getElementById("cardadd").appendChild(moviecard);
-        
+     
     });
+
+    const page=document.createElement('div');
+    page.innerHTML=`<div class="d-flex justify-content-center">
+    <button type="button" class="btn btn-light p-2 m-2" onclick="previouspage()"> previous page</button>
+    <button type="button" class="btn btn-light p-2 m-2" onclick="nextpage()">next page</button>
+</div>`;
     
+    document.getElementById("cardadd").appendChild(page);
 }
  
+}
+const search=()=>{
+    const data=searchbar.value;
+    if(data!=""){
+        getmovie(searchurl+'&query='+data);
+    }
+    else getmovie(apipopularmovie);
+}
+
+const searchenter=(event)=> {
+   
+    if (event.keyCode === 13) {
+      
+      event.preventDefault();
+      
+      document.getElementById("searchbutton").click();
+    }
+  }
+  const nextpage =()=>{
+    
+    
+      if(pagenumber+1<=1000){
+        pagenumber=pagenumber+1
+      getmovie(changepageurl+pagenumber)
+      document.body.scrollTop = 0; 
+      document.documentElement.scrollTop = 0;
+    }
+    else{
+        alert("no more page")
+    }
+  }
+  const previouspage=()=>{
+    console.log("hello")
+    
+    if(pagenumber-1>=1){
+        pagenumber=pagenumber-1
+    getmovie(changepageurl+pagenumber)
+    document.body.scrollTop = 0; 
+    document.documentElement.scrollTop = 0;
+    }
+    else{  alert("no more previous page");
+}
+}
 
 
 
