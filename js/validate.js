@@ -1,10 +1,10 @@
 
-$(document).ready(function(){
+
     
 
 
-const signup =(event)=>{
-    event.preventDefault()
+const signup =()=>{
+    
     let email=$("#email").val()
    let name=$("#name").val()
    let gender=$("#gender").val()
@@ -46,8 +46,8 @@ signinpage();}
    
 
 } 
-const signin =(event)=>{
-    event.preventDefault()
+function signin (){
+   
     let email=$("#loginemail").val()
     let pass=$("#loginpass").val()
     check=true;
@@ -106,7 +106,7 @@ const messagesend=(event)=>{
 }
 
  
-})
+
 
 
 

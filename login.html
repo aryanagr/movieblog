@@ -7,7 +7,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <form class="card2 card border-0 px-4 py-1 pt-5" >
+                <form class="card2 card border-0 px-4 py-1 pt-5" onsubmit="event.preventDefault()" >
                     
                     <div class="row px-3 mb-4"> <label class="mb-1">
                             <h6 class="mb-0 text-sm">Email Address</h6>
@@ -20,7 +20,7 @@
                         <span style="color: red; font-size:small;" id="loginpasscheck"></span>
                     </div><br/>
 
-                    <div class="row mb-3 px-3"> <button  class="btn btn-info text-center" onclick="signin(event)" >Login</button> </div>
+                    <div class="row mb-3 px-3"> <button  class="btn btn-info text-center" onclick="signin()" >Login</button> </div>
                     <div class="row  px-3"> <small class="font-weight-bold">Don't have an account? 
                      <a class="text-danger"  onclick="signuppage()"> register</a>
                 </small> </div>
