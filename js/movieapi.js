@@ -3,11 +3,11 @@
 
 const api_key='api_key=c78e40c8f8548955baa2f20d92ec9fcf';
 const baseurl='https://api.themoviedb.org/3'
-const apipopularmovie=baseurl+'/discover/movie?sort_by=popularity.desc&'+api_key;
+const popularmovie=baseurl+'/discover/movie?sort_by=popularity.desc&'+api_key;
 const imageurl='https://image.tmdb.org/t/p/w500/';
 const searchurl=baseurl+'/search/movie?'+api_key;
 const changepageurl=baseurl+'/discover/movie?sort_by=popularity.desc&'+api_key+'&page='
-const genreurl=apipopularmovie+'&with_genres='
+const genreurl=popularmovie+'&with_genres='
 const body=document.getElementById("body");
 
 var pagenumber=1;
@@ -21,7 +21,7 @@ function getmovie(url){
     .then(res=>res.json())
     .then(data =>{
       totalpage=data.total_pages;
-       
+       console.log(data)
        showmovies(data.results);
     })
 }
@@ -46,7 +46,7 @@ function showmovies(data){
 
 
 body.appendChild(cardparent)
-   if(data.length==0){alert("no movie found");getmovie(apipopularmovie);}
+   if(data.length==0){alert("no movie found");getmovie(popularmovie);}
    else{
     data.forEach(movie => {
         
@@ -83,12 +83,13 @@ body.appendChild(cardparent)
 const search=()=>{
     const data=searchbar.value;
     globalpage=1;
+    document.getElementById("genre").selectedIndex="0";
     if(data!=""){
        
         getmovie(searchurl+'&query='+data);
        
     }
-    else getmovie(apipopularmovie);
+    else getmovie(popularmovie);
     
 }
 
@@ -114,6 +115,7 @@ const searchenter=(event)=> {
       document.body.scrollTop = 0; 
       document.documentElement.scrollTop = 0;
       searchpagenumber=1
+      genrepagenumber=1
      
 
     }
@@ -147,6 +149,7 @@ else{  alert("no more previous page");
           document.body.scrollTop = 0; 
           document.documentElement.scrollTop = 0;
           pagenumber=1;
+          genrepagenumber=1
           
         }
         else{
@@ -213,7 +216,9 @@ else{  alert("no more previous page");
 }
 const genre=()=>{
   const value=document.getElementById("genre").value
+  if(value!=0)
   getmovie(genreurl+value)
+  else getmovie(popularmovie)
 }
 
 
