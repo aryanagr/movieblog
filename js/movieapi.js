@@ -7,11 +7,12 @@ const apipopularmovie=baseurl+'/discover/movie?sort_by=popularity.desc&'+api_key
 const imageurl='https://image.tmdb.org/t/p/w500/';
 const searchurl=baseurl+'/search/movie?'+api_key;
 const changepageurl=baseurl+'/discover/movie?sort_by=popularity.desc&'+api_key+'&page='
-
+const genreurl=apipopularmovie+'&with_genres='
 const body=document.getElementById("body");
 
 var pagenumber=1;
 var totalpage=1;
+var genrepagenumber=1;
 var searchpagenumber=1;
 var globalpage=1;
 
@@ -101,7 +102,8 @@ const searchenter=(event)=> {
     }
   }
   const nextpage =()=>{
-    if(searchbar.value==""){
+    const value=document.getElementById("genre").value
+    if(searchbar.value==""&&value==0){
     
       if(pagenumber+1<=totalpage){
         
@@ -112,12 +114,30 @@ const searchenter=(event)=> {
       document.body.scrollTop = 0; 
       document.documentElement.scrollTop = 0;
       searchpagenumber=1
-      
-      
+     
+
     }
     else{
         alert("no more page")
     }
+}
+else if(searchbar.value=="">0&&value!=0){
+  if(genrepagenumber+1<=totalpage){
+    genrepagenumber=genrepagenumber+1;
+    globalpage=genrepagenumber;
+getmovie(genreurl+value+ '&page='+genrepagenumber)
+
+
+document.body.scrollTop = 0; 
+document.documentElement.scrollTop = 0;
+searchpagenumber=1
+pagenumber=1;
+}
+
+
+else{  alert("no more previous page");
+}
+
 }
     else{
         if(searchpagenumber+1<=totalpage){
@@ -136,19 +156,42 @@ const searchenter=(event)=> {
     }
   }
   const previouspage=()=>{
-    if(searchbar.value==""){
+    const value=document.getElementById("genre").value
+    if(searchbar.value==""&&value==0){
     
     if(pagenumber-1>0){
         pagenumber=pagenumber-1;
         globalpage=pagenumber;
     getmovie(changepageurl+pagenumber)
+  
+  
     document.body.scrollTop = 0; 
     document.documentElement.scrollTop = 0;
     searchpagenumber=1
-    
+    genrepagenumber
     }
+    
+    
     else{  alert("no more previous page");
 }
+  }
+  else if(searchbar.value=="">0&&value!=0){
+    if(genrepagenumber-1>0){
+      genrepagenumber=genrepagenumber-1;
+      globalpage=genrepagenumber;
+  getmovie(genreurl+value+ '&page='+genrepagenumber)
+
+
+  document.body.scrollTop = 0; 
+  document.documentElement.scrollTop = 0;
+  searchpagenumber=1
+  pagenumber=1;
+  }
+  
+  
+  else{  alert("no more previous page");
+}
+
   }
   else{
     if(searchpagenumber-1>0){
@@ -159,6 +202,7 @@ const searchenter=(event)=> {
       document.body.scrollTop = 0; 
       document.documentElement.scrollTop = 0;
       pagenumber=1;
+      genrepagenumber
       
     }
     else{
@@ -166,6 +210,10 @@ const searchenter=(event)=> {
     }
 
   }
+}
+const genre=()=>{
+  const value=document.getElementById("genre").value
+  getmovie(genreurl+value)
 }
 
 
