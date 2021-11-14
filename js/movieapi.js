@@ -55,7 +55,7 @@ body.appendChild(cardparent)
         moviecard.classList.add("card" , "col-sm-6" ,"col-lg-4","col-xl-3" ,"p-1" ,"pt-0","pb-0","d-inline-block");
         moviecard.setAttribute("style", " outline: 0; border: 0;");
         moviecard.innerHTML=`
-        <img src="${imageurl+poster_path}" alt="${title}"   class="card-img-top  w-100 h-75" alt="...">
+        <img src="${poster_path?imageurl+poster_path:"images/broke.jpg"}" alt="${title}"   class="card-img-top  w-100 h-75" alt="...">
         <div class="card-body px-0 ">
         <div class="row">
             <h5 class="card-title col-9 d-inline">${title}</h5>  <h5 class="card-text col-3 d-inline" id="ratting">⭐${vote_average}</h5>
