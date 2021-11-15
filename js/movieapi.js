@@ -21,7 +21,7 @@ function getmovie(url){
     .then(res=>res.json())
     .then(data =>{
       totalpage=data.total_pages;
-       console.log(data)
+       
        showmovies(data.results);
     })
 }
@@ -171,7 +171,7 @@ else{  alert("no more previous page");
     document.body.scrollTop = 0; 
     document.documentElement.scrollTop = 0;
     searchpagenumber=1
-    genrepagenumber
+    genrepagenumber=1
     }
     
     
@@ -205,7 +205,7 @@ else{  alert("no more previous page");
       document.body.scrollTop = 0; 
       document.documentElement.scrollTop = 0;
       pagenumber=1;
-      genrepagenumber
+      genrepagenumber=1;
       
     }
     else{
@@ -215,10 +215,14 @@ else{  alert("no more previous page");
   }
 }
 const genre=()=>{
+  searchbar.value="";
   const value=document.getElementById("genre").value
   if(value!=0)
   getmovie(genreurl+value)
   else getmovie(popularmovie)
+  searchpagenumber=1
+  pagenumber=1;
+  globalpage=1;
 }
 
 
