@@ -1,3 +1,94 @@
+<script>
+  function selectlist(){
+  const genres= [
+
+  {
+    "id": 28,
+    "name": "Action"
+  },
+  {
+    "id": 12,
+    "name": "Adventure"
+  },
+  {
+    "id": 16,
+    "name": "Animation"
+  },
+  {
+    "id": 35,
+    "name": "Comedy"
+  },
+  {
+    "id": 80,
+    "name": "Crime"
+  },
+  {
+    "id": 99,
+    "name": "Documentary"
+  },
+  {
+    "id": 18,
+    "name": "Drama"
+  },
+  {
+    "id": 10751,
+    "name": "Family"
+  },
+  {
+    "id": 14,
+    "name": "Fantasy"
+  },
+  {
+    "id": 36,
+    "name": "History"
+  },
+  {
+    "id": 27,
+    "name": "Horror"
+  },
+  {
+    "id": 10402,
+    "name": "Music"
+  },
+  {
+    "id": 9648,
+    "name": "Mystery"
+  },
+  {
+    "id": 10749,
+    "name": "Romance"
+  },
+  {
+    "id": 878,
+    "name": "Science Fiction"
+  },
+  {
+    "id": 10770,
+    "name": "TV Movie"
+  },
+  {
+    "id": 53,
+    "name": "Thriller"
+  },
+  {
+    "id": 10752,
+    "name": "War"
+  },
+  {
+    "id": 37,
+    "name": "Western"
+  }
+]
+genres.forEach(genre=>{
+  const value=genre.id;
+  const name=genre.name;
+  const option=document.createElement('option');
+  option.setAttribute("value",value)
+  option.innerText=name;
+  document.getElementById("genre").appendChild(option)
+})
+}
+</script>
 <nav class="navbar navbar-expand-lg navbar-light  shadow  p-2 m-2 bg-white rounded  pe-0 me-0 " >
     <div class="container-fluid">
       <a class="navbar-brand" onclick="homepage()"  >
@@ -9,6 +100,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item d-flex me-5 pe-5">
+            <script>{selectlist()}</script>
             <select class=" form-control me-2"   name="genre" id="genre" style="border:0; outline:0" onchange="genre()">
            <option value=0  selected>popular</option>
           </select>
@@ -42,94 +134,6 @@
       </div>
     </div>
   </nav>
-  <script>
-    const genres= [
  
-    {
-      "id": 28,
-      "name": "Action"
-    },
-    {
-      "id": 12,
-      "name": "Adventure"
-    },
-    {
-      "id": 16,
-      "name": "Animation"
-    },
-    {
-      "id": 35,
-      "name": "Comedy"
-    },
-    {
-      "id": 80,
-      "name": "Crime"
-    },
-    {
-      "id": 99,
-      "name": "Documentary"
-    },
-    {
-      "id": 18,
-      "name": "Drama"
-    },
-    {
-      "id": 10751,
-      "name": "Family"
-    },
-    {
-      "id": 14,
-      "name": "Fantasy"
-    },
-    {
-      "id": 36,
-      "name": "History"
-    },
-    {
-      "id": 27,
-      "name": "Horror"
-    },
-    {
-      "id": 10402,
-      "name": "Music"
-    },
-    {
-      "id": 9648,
-      "name": "Mystery"
-    },
-    {
-      "id": 10749,
-      "name": "Romance"
-    },
-    {
-      "id": 878,
-      "name": "Science Fiction"
-    },
-    {
-      "id": 10770,
-      "name": "TV Movie"
-    },
-    {
-      "id": 53,
-      "name": "Thriller"
-    },
-    {
-      "id": 10752,
-      "name": "War"
-    },
-    {
-      "id": 37,
-      "name": "Western"
-    }
-  ]
-  genres.forEach(genre=>{
-    const value=genre.id;
-    const name=genre.name;
-    const option=document.createElement('option');
-    option.setAttribute("value",value)
-    option.innerText=name;
-    document.getElementById("genre").appendChild(option)
-  })
-  </script>
     
    
